@@ -1,0 +1,15 @@
+[Unit]
+Description=FloatHouse Service
+After=network.target FloatHouse.socket
+Requires=FloatHouse.socket
+
+[Service]
+Type=simple
+#ExecStart=/usr/local/bin/ssl_test.py
+ExecStart=/usr/bin/python -u /usr/local/bin/floathouse.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
