@@ -102,7 +102,6 @@ class Server(BaseHTTPServer.HTTPServer):
         self.socket = socket.socket(_sock=sock)
         
     def get_request(self):
-        sys.stderr.write("got request for god sakes\n")
         newsocket, fromaddr = self.socket.accept()
         connstream = ssl.wrap_socket(newsocket,
                                      server_side=True,
@@ -111,7 +110,6 @@ class Server(BaseHTTPServer.HTTPServer):
 				     ssl_version = ssl.PROTOCOL_TLSv1,
                                      do_handshake_on_connect=False
                                      )
-        sys.stderr.write("wrapped socket\n")
         return connstream, fromaddr
 
 httpd = Server(Handler)
