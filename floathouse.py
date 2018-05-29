@@ -15,11 +15,11 @@ html = '''
 <head>
 <title>Remote Light Control</title>
 <link rel="apple-touch-icon" href="/bulb.png">
-<meta name="apple-mobile-web-app-title" content="DeckLights">
+<meta name="apple-mobile-web-app-title" content="FloatHouse">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <style>
-@font-face{ font-family: fontawesome; src: url(http://uselesstrash.com/fa-regular-400.ttf); }
+@font-face{ font-family: fontawesome; src: url(/fa-regular-400.ttf); }
 p{ font-size: 50vh; font-family: fontawesome; margin:0; }
 a{ text-decoration:none; }
 </style>
@@ -77,6 +77,13 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(icon.read())
             icon.close()
+        elif self.path == "/fa-regular-400.ttf":
+            icon = open("/usr/local/share/fonts/fa-regular-400.ttf",'r')
+            self.send_response(200)
+            self.send_header("Content-type", "application/octet-stream")
+            self.end_headers()
+            self.wfile.write(icon.read())
+            icon.close()
         else:
             #print self.path
             params = urlparse.parse_qs(self.path[2:])
@@ -106,6 +113,6 @@ class Server(BaseHTTPServer.HTTPServer):
                                      )
         sys.stderr.write("wrapped socket\n")
         return connstream, fromaddr
+
 httpd = Server(Handler)
 httpd.serve_forever()
-
