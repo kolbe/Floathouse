@@ -3,8 +3,8 @@ Description=FloatHouse Socket
 PartOf=FloatHouse.service
 
 [Socket]
-#ListenStream=80
-ListenStream=443
+ListenStream=80
+#ListenStream=443
 BindIPv6Only = both
 
 [Install]

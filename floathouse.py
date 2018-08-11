@@ -101,7 +101,7 @@ class Server(BaseHTTPServer.HTTPServer):
         sock = socket.fromfd(3, self.address_family, self.socket_type)
         self.socket = socket.socket(_sock=sock)
         
-    def get_request(self):
+    def _get_request(self):
         newsocket, fromaddr = self.socket.accept()
         connstream = ssl.wrap_socket(newsocket,
                                      server_side=True,
