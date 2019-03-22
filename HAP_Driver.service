@@ -5,13 +5,13 @@ After = local-fs.target network-online.target
 #After = pigpiod.service
 
 [Service]
-WorkingDirectory = /home/pi/git/kolbe/floathouse
+WorkingDirectory = /home/pi/git/Floathouse
 # It's a good idea to use some unprivileged system user
 User = pi
 # Script starting HAP-python, e.g. main.py
 # Be careful to set any paths you use, e.g. for persisting the state.
 #Environment=PYTHONPATH=/home/pi/.local/lib/python3.5/site-packages/
-ExecStart = /usr/bin/python3 /home/pi/git/kolbe/floathouse/hap_driver.py
+ExecStart = /usr/bin/python3 /home/pi/git/Floathouse/hap_driver.py
 
 [Install]
 WantedBy = multi-user.target
