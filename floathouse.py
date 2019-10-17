@@ -45,9 +45,9 @@ function sendCmd(cmd){
 
 def execCmd(cmd):
     if cmd == "on":
-        pin = 17
+        pin = 27
     elif cmd== "off":
-        pin = 18
+        pin = 17 # 18
     else:
         print "Command '{}' is invalid.".format(cmd)
         return

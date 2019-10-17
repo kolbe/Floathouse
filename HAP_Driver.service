@@ -1,7 +1,7 @@
 [Unit]
 Description = HAP (HomeKit) daemon
 #Wants = pigpiod.service  # Remove this if you don't depend on pigpiod
-After = local-fs.target network-online.target
+After = local-fs.target network-online.target systemd-networkd-wait-online.service
 #After = pigpiod.service
 
 [Service]
@@ -12,6 +12,9 @@ User = pi
 # Be careful to set any paths you use, e.g. for persisting the state.
 #Environment=PYTHONPATH=/home/pi/.local/lib/python3.5/site-packages/
 ExecStart = /usr/bin/python3 /home/pi/git/Floathouse/hap_driver.py
+
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy = multi-user.target
