@@ -1,0 +1,28 @@
+#!/usr/bin/python
+import RPi.GPIO as GPIO
+import os, sys
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+def execCmd(cmd):
+    if cmd == "on":
+        pin = 27
+    elif cmd== "off":
+        pin = 17 # 18
+    else:
+        print "Command '{}' is invalid.".format(cmd)
+        return
+
+    GPIO.setup(pin,GPIO.OUT)
+    #print "'{}' button press".format(cmd)
+    GPIO.output(pin,GPIO.HIGH)
+    time.sleep(0.2)
+    #print "'{}' button release".format(cmd)
+    GPIO.output(pin,GPIO.LOW)
+
+if len(sys.argv) > 1:
+    execCmd(sys.argv[1])
+else:
+    execCmd(os.path.basename(sys.argv[0]))
